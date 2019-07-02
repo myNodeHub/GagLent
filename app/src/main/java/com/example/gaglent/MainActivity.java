@@ -14,6 +14,9 @@ import com.example.gaglent.pojo.ModelNewsLatest;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -30,33 +33,41 @@ import static com.example.gaglent.Service.BASE_URL;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+//    @Inject
+//    OkHttpClient client;
+//    @Inject
+//    Gson gson;
+    @Inject
     Retrofit retrofit;
+    @Inject
     RecyclerViewAdapter recyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AndroidInjection.inject(this);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewAdapter = new RecyclerViewAdapter(this);
+//        recyclerViewAdapter = new RecyclerViewAdapter(this);
+
         recyclerView.setAdapter(recyclerViewAdapter);
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
+//        Gson gson = new GsonBuilder()
+//                .setLenient()
+//                .create();
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .client(client)
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .build();
 
         executing();
     }

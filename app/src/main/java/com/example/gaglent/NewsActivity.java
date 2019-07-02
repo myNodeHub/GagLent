@@ -21,10 +21,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 import static com.example.gaglent.Service.BASE_URL;
 
 public class NewsActivity extends AppCompatActivity {
-
+@Inject
     Retrofit retrofit;
     TextView innerTxtInfoTitle;
     TextView innerTxtInfoRightcol;
@@ -41,22 +43,22 @@ public class NewsActivity extends AppCompatActivity {
         innerTxtAnnounce = findViewById(R.id.innerTxtAnnounce);
         innerImage = findViewById(R.id.innerImage);
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
+//        Gson gson = new GsonBuilder()
+//                .setLenient()
+//                .excludeFieldsWithoutExposeAnnotation()
+//                .create();
 
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .client(client)
+//                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .build();
 
         Bundle bundle = getIntent().getExtras();
 
