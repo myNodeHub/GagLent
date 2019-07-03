@@ -11,6 +11,7 @@ import com.example.gaglent.pojo.TheNews;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dagger.android.AndroidInjection;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -26,7 +27,7 @@ import javax.inject.Inject;
 import static com.example.gaglent.Service.BASE_URL;
 
 public class NewsActivity extends AppCompatActivity {
-@Inject
+    @Inject
     Retrofit retrofit;
     TextView innerTxtInfoTitle;
     TextView innerTxtInfoRightcol;
@@ -37,6 +38,7 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        AndroidInjection.inject(this);
 
         innerTxtInfoTitle = findViewById(R.id.innerTxtInfoTitle);
         innerTxtInfoRightcol = findViewById(R.id.innerTxtInfoRightcol);
